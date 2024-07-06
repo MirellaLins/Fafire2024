@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.ConfigurationCompat
 import com.example.retrofit.R
 import com.example.retrofit.models.Curso
 import com.example.retrofit.repository.CursoRepository
@@ -15,17 +16,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val curso = Curso(0, "Teste 2")
-
         val repository = CursoRepository(RetrofitConfig.servico)
 
-        repository.criarCurso(
+//        repository.criarCurso(
+//            curso = curso,
+//            onCall = {
+//                Log.i(">>>", "Sucesso!")
+//            },
+//            onError = {
+//                Log.e(">>>", "Erro!")
+//            }
+//        )
+
+//        repository.buscarCursoPorId(
+//            idCurso = 4,
+//            onCall = { curso ->
+//                Log.i(">>>", curso?.name ?: "")
+//            },
+//            onError = { mensagem ->
+//                Log.e(">>>", mensagem)
+//            }
+//        )
+
+
+        val curso = Curso(6, "Backend")
+        repository.alterarCurso(
+            idCurso = 6,
             curso = curso,
-            onCall = {
-                Log.i(">>>", "Sucesso!")
+            onCall = { rep ->
+                Log.i(">>>", rep?.name ?: "")
             },
-            onError = {
-                Log.e(">>>", "Erro!")
+            onError = { mensagem ->
+                Log.e(">>>", mensagem)
             }
         )
 

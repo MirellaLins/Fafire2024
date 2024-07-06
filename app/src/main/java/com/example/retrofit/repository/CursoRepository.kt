@@ -32,4 +32,45 @@ class CursoRepository(private val servico: CursosService) {
             }
         })
     }
+
+    fun buscarCursoPorId(
+        idCurso: Int,
+        onCall: (curso: Curso?) -> Unit,
+        onError: (mensagem: String) -> Unit){
+
+        servico.getCursoPorId(idCurso).enqueue(object : Callback<Curso> {
+            override fun onResponse(p0: Call<Curso>, response: Response<Curso>) {
+                if (response.isSuccessful) {
+                    val curso = response.body()
+                    onCall(curso)
+                } else {
+                    onError(response.message())
+                }
+            }
+
+            override fun onFailure(p0: Call<Curso>, p1: Throwable) {
+                val mensagem = p1.message
+                if (mensagem != null)
+                    onError(mensagem)
+            }
+        })
+
+    }
+
+    fun alterarCurso(
+        idCurso: Int,
+        curso: Curso,
+        onCall: (curso: Curso?) -> Unit,
+        onError: (mensagem: String) -> Unit
+    ){
+        servico.putCurso(idCurso, curso).enqueue(object : Callback<Curso> {
+            override fun onResponse(p0: Call<Curso>, p1: Response<Curso>) {
+                onCall(p1.body())
+            }
+
+            override fun onFailure(p0: Call<Curso>, p1: Throwable) {
+                onError(p1.message ?: "")
+            }
+        })
+    }
 }
