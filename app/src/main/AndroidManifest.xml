@@ -13,6 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Retrofit"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/net_seguraca"
         tools:targetApi="31">
         <activity
             android:name=".UI.MainActivity"
