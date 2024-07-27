@@ -1,7 +1,9 @@
 package com.example.retrofit.UI
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.ConfigurationCompat
@@ -16,40 +18,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val repository = CursoRepository(RetrofitConfig.servico)
-
-//        repository.criarCurso(
-//            curso = curso,
-//            onCall = {
-//                Log.i(">>>", "Sucesso!")
-//            },
-//            onError = {
-//                Log.e(">>>", "Erro!")
-//            }
-//        )
-
-//        repository.buscarCursoPorId(
-//            idCurso = 4,
-//            onCall = { curso ->
-//                Log.i(">>>", curso?.name ?: "")
-//            },
-//            onError = { mensagem ->
-//                Log.e(">>>", mensagem)
-//            }
-//        )
-
-
-        val curso = Curso(6, "Backend")
-        repository.alterarCurso(
-            idCurso = 6,
-            curso = curso,
-            onCall = { rep ->
-                Log.i(">>>", rep?.name ?: "")
-            },
-            onError = { mensagem ->
-                Log.e(">>>", mensagem)
-            }
-        )
+        val menuCurso = findViewById<Button>(R.id.btCurso)
+        menuCurso.setOnClickListener {
+            val intent = Intent(this, CursoActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

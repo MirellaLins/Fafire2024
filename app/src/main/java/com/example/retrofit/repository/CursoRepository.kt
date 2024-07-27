@@ -44,7 +44,10 @@ class CursoRepository(private val servico: CursosService) {
                     val curso = response.body()
                     onCall(curso)
                 } else {
-                    onError(response.message())
+                    if (response.code() == 404)
+                        onError("Dado não exite na base")
+                    else
+                        onError(response.message())
                 }
             }
 
@@ -70,6 +73,22 @@ class CursoRepository(private val servico: CursosService) {
 
             override fun onFailure(p0: Call<Curso>, p1: Throwable) {
                 onError(p1.message ?: "")
+            }
+        })
+    }
+
+    fun apagarCurso(
+        idCurso: Int,
+        onCall: () -> Unit,
+        onError: (mensagem: String) -> Unit
+    ){
+        servico.deleteCurso(idCurso).enqueue(object : Callback<Any> {
+            override fun onResponse(p0: Call<Any>, p1: Response<Any>) {
+                onCall()
+            }
+
+            override fun onFailure(p0: Call<Any>, p1: Throwable) {
+                onError(p1.message ?: " Erro")
             }
         })
     }
