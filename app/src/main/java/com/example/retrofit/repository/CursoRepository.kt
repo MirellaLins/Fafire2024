@@ -8,6 +8,15 @@ import retrofit2.Response
 
 class CursoRepository(private val servico: CursosService) {
 
+    fun buscarCursos(): List<Curso> {
+
+        return listOf(
+            Curso(id = 1, name = "Curso 1"),
+            Curso(id = 2, name = "Curso 2"),
+            Curso(id = 3, name = "Curso 3")
+        )
+    }
+
     fun criarCurso(curso: Curso, onCall: () -> Unit, onError: () -> Unit) {
         servico.postCursos(curso).enqueue(object : Callback<Any> {
             override fun onResponse(p0: Call<Any>, p1: Response<Any>) {

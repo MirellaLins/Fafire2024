@@ -7,54 +7,18 @@
     android:background="#c9c9c9"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.CursoActivity">
+    tools:context=".UI.cursoScreen.CursoActivity">
 
-    <EditText
-        android:id="@+id/etIdCurso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Digite aqui o id do curso..."
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListaCursos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        tools:listitem="@layout/curso_item_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvNomeCurso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etIdCurso"
-        tools:text="Exemplo" />
-
-
-    <EditText
-        android:id="@+id/etNomeCurso"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Digine o nome do novo curso..."
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btSalvar"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btSalvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Salvar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/btApagar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Apagar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etIdCurso" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
